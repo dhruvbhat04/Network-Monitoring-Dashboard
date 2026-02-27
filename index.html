@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Network Monitor</title>
+
+    <!-- Link to CSS file inside static folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Smart Network Monitoring Dashboard</h1>
+
+    <h2>Add Device</h2>
+    <form action="/add" method="POST">
+        <label>Device Name:</label>
+        <input type="text" name="name" required>
+
+        <label>IP Address:</label>
+        <input type="text" name="ip" required>
+
+        <button type="submit">Add Device</button>
+    </form>
+
+    <hr>
+
+    <h2>Device Status</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>IP</th>
+            <th>Status</th>
+            <th>Latency</th>
+        </tr>
+
+        {% for device in devices %}
+        <tr>
+            <td>{{ device[0] }}</td>
+            <td>{{ device[1] }}</td>
+            <td>{{ device[2] }}</td>
+            <td>{{ device[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
